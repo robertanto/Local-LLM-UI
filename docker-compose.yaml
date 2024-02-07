@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+
+  inference_api:
+    container_name: inference_api
+    image: inference_api:latest
+    environment:
+      - HF_INFERENCE_API_TOKEN=<YOUR-TOKEN-HERE>
+    build:
+      context: "./HFInferenceAPI"
+      dockerfile: Dockerfile
+
+  gradio_ui:
+    container_name: gradio_ui
+    image: gradio_ui:latest
+    build:
+      context: "./GradioUI"
+      dockerfile: Dockerfile
+    ports:
+      - "7860:7860"
+    environment:
+      - INFERENCE_API_ENDPOINT=http://inference_api:8080
+    depends_on:
+      - inference_api

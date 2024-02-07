@@ -1,0 +1,7 @@
+requests
+langchain==0.1.4
+fastapi
+uvicorn
+pydantic
+transformers
+jinja2
