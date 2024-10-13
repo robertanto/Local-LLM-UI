@@ -1,8 +1,6 @@
-FROM python:3
+FROM python:3.10
 
 WORKDIR /home 
-
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && export PATH="$HOME/.cargo/bin:$PATH"
 
 ADD requirements.txt /home
 RUN pip install --no-cache-dir -r requirements.txt
